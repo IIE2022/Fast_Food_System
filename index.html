@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" type="image/png" href="img/user.png">
+    <!-- Color para la barra de direccion del navegador (para dispositivos moviles) -->
+    <meta name="theme-color" content="black">
+    <!-- Oculta la barra de direccion al crear un acceso directo -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Meta Tag responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/bootstrap-icons.css">
+    <!-- Alertify -->
+    <link href="alertify/alertify.min.css" rel="stylesheet" type="text/css">
+    <link href="alertify/default.min.css" rel="stylesheet" type="text/css">
+    <script src="alertify/alertify.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/estilos.css">
+  </head>
+  <body class="fondo">
+      <div class="container">
+          <div class="centrardiv">
+              <div class="card bg-transparent border-0" style="width: 400px">
+                  <label class="card-header blanco fs-3 border-0">Acceso al Sistema</label>
+                  <div class="card-body">
+                  <form class="" action="#" method="GET">
+                      <div class="text-center mb-3">
+                           <img src="img/user.png" alt="">
+                      </div>
+                      <div class="input-group mb-3">
+                       <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                       <input type="text" class="form-control letra fs-5" placeholder="Usuario" id="user"  autocomplete="off">
+                  </div>
+                  <div class="input-group mb-3">
+                       <span class="input-group-text"><i class="bi bi-unlock-fill"></i></span>
+                       <input type="password" class="form-control letra fs-5" id="pass" placeholder="Contraseña" autocomplete="off">
+                  </div>
+                  <div class="input-group mb-3 d-grid">
+                       <button type="button" onclick="validateLogin()" class="btn btn-light"><i class="bi bi-door-open-fill"></i> Ingresar</button>
+                  </div>
+              </form>
+             </div>
+            </div>
+          </div>
+        </div>
+  </div>
+    <!-- Javascript -->
+    
+    <script src="./alertify/alertify.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-3.5.1.js"> </script>
+    <script type="text/javascript" src="./js/jquery-3.6.0.min.js"> </script>
+    <script type="text/javascript" src="./js/popper.min.js"> </script>
+    <script type="text/javascript" src="./js/datatables.min.js"></script>
+    <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
+    
+    <script type="text/javascript" src="./js/jquery.dataTables.min.js"></script>
+    <script src="js/funciones.js"></script>
+
+    <script>    document.getElementById("user").focus(); </script>
+
+    <script src="js/validations.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        if (getCookie("login") == "iniciado") {
+            window.location.href = "./menu.html";
+        }
+      });
+
+ </script>
+  </body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food System</title>
+    <link href="../img/logo.png" rel="shortcut icon" type="image/x-icon" />
+    <!-- Color para la barra de direccion del navegador (para dispositivos moviles) -->
+    <meta name="theme-color" content="black">
+    <!-- Oculta la barra de direccion al crear un acceso directo -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Meta Tag responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <!-- ALERTIFY -->
+    <link href="./alertify/alertify.min.css" rel="stylesheet" type="text/css" />
+    <link href="./alertify/default.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="./bootstrap/bootstrap-icons.css" />
+    <link href="./css/datatables.min.css" rel="stylesheet" type="text/css" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/estilos.css" />
+
+    <link rel="stylesheet" href="./css/bootstrap-datepicker.min.css">
+
+</head>
+
+<body class="logo">
+
+    <div class="modal fade" id="perfilLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     
+    </div>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+         <div class="container-fluid ">
+              <a class="navbar-brand" href="#" id="icono-cerrar">
+                   <img src="./img/logo.png" alt="" class="d-inline-block align-text-middle" style="width:60px;">
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                   aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                   <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarScroll">
+
+              </div>
+         </div>
+    </nav>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalAutor" data-bs-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="modalAutorLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered  modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="titulo text-center modal-title">Acerca de...</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h3>FACULTAD</h3>
+                    <h3>CARRERA</h3>
+                    <h3>ALUMNO</h3>
+                    <h3>FACULTAD</h3>
+                    <h3>FACULTAD</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="consultarCliente" data-bs-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="consultarClienteLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered  modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="titulo text-center modal-title">Clientes</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive py-4">
+                        <table id="tableCliente" class="table table-striped table-bordered display" style="width: 100%;">
+                            <thead class="table-secondary">
+                                <tr class="tabla-cabecera">
+                                    <th style="width: 10%;">CI o RUC</th>
+                                    <th style="width: 60%;">Nombre</th>
+                                    <th style="width: 10%;">Teléfono</th>
+                                    <th style="width: 10%;">Opciones</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="tbody_cliente">
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="consultarArticulo" data-bs-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="consultarArticuloLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered  modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="titulo text-center modal-title">Artículos</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive py-4">
+                        <table id="consultTableArticulo" class="table table-striped table-bordered display"
+                            style="width: 100%;">
+                            <thead class="table-secondary">
+                                <tr class="tabla-cabecera">
+                                    <th>COD. BARRA</th>
+                                    <th>DESCRIPCIÓN</th>
+                                    <th>STOCK</th>
+                                    <th>PRECIO</th>
+                                    <th>OPC.</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="tbody_articulo">
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalAutorizacion" data-bs-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="modalAutorizacionLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered  modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAutorizacionLabel">Confirmar Autorización</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <input type="password" placeholder="Contraseña*" id="password_autorizacion" class="form-control"
+                            required>
+                    </div>
+
+                    <div class="row pt-5">
+                        <div class="col-md-6">
+                            <button class='btn btn-danger btn-block' title='Cancelar' data-dismiss="modal"><i
+                                    class='fas fa-times-circle'></i> Cancelar</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class='btn btn-info btn-block' id="btn-autorizacion" title='Aceptar'><i
+                                    class='fas fa-check'></i> Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalPagoVentaContado" data-bs-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="modalPagoVentaContadoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered  modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAutorizacionLabel">Registrar Cobro de Venta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong>
+                                <p id="totalMV">TOTAL DE LA VENTA</p>
+                            </strong>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="efectivoMV">Efectivo</label>
+                                <input type="text" id="efectivoMV" onKeyPress="return soloNumeros(event)"
+                                    onkeyup="format_numero(this)" onchange="format_numero(this)"
+                                    class="form-control text-sm-end" placeholder="Efectivo" minlength="3" maxlength="10"
+                                    onblur="format_numero(this)" value="0">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="efectivoMV">Vale</label>
+                                <input type="text" id="valeMV" onKeyPress="return soloNumeros(event)"
+                                    onkeyup="format_numero(this)" onchange="format_numero(this)"
+                                    class="form-control text-sm-end" placeholder="Vale" minlength="3" maxlength="10"
+                                    onblur="format_numero(this)" value="0">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="efectivoMV">Cheque</label>
+                                <input type="text" id="chequeMV" onKeyPress="return soloNumeros(event)"
+                                    onkeyup="format_numero(this)" onchange="format_numero(this)"
+                                    class="form-control text-sm-end" placeholder="Cheque" minlength="3" maxlength="10"
+                                    onblur="format_numero(this)" value="0">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="efectivoMV">Tarjeta de crédito</label>
+                                <input type="text" id="tarjetaMV" onKeyPress="return soloNumeros(event)"
+                                    onkeyup="format_numero(this)" onchange="format_numero(this)"
+                                    class="form-control text-sm-end" placeholder="Tarjeta" minlength="3" maxlength="10"
+                                    onblur="format_numero(this)" value="0">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="efectivoMV">Tarjeta de débito</label>
+                                <input type="text" id="tarjetaDMV" onKeyPress="return soloNumeros(event)"
+                                    onkeyup="format_numero(this)" onchange="format_numero(this)"
+                                    class="form-control text-sm-end" placeholder="Tarjeta" minlength="3" maxlength="10"
+                                    onblur="format_numero(this)" value="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mx-auto">
+                        <div class="col-md-6">
+                            <p id="totalPMV">Total 0</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p id="vueltoMV">Vuelto 0</p>
+                        </div>
+                        <div>
+                            <p class="small">Presione F9 para guardar la venta.</p>
+                        </div>
+                    </div>
+
+                    <div class="row pt-5">
+                        <div class="col-md-6">
+                            <button class='btn btn-danger btn-block' title='Cancelar' data-bs-dismiss="modal"><i
+                                    class='fas fa-times-circle'></i> Cancelar</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class='btn btn-info btn-block' title='Aceptar' id="btn-MPV" disabled><i
+                                    class='fas fa-check'></i> Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid p-5">
+        <div class="row" id="div-venta">
+            <div class="col-lg-12">
+                <div class="card px-3">
+                    <div class="position-relative text-end">
+                        <a class="navbar-brand" href="#">
+                            <button type="button" class="btn-close" id="cerrar_venta"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                        </a>
+                    </div>
+                    <div class="card mt-3 borde mt-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Nº Documento</label>
+                                        <input type="hidden" id="id_cliente">
+                                        <input type="text" name="ciruc" id="cirucC" onkeyup="format_numero(this)"
+                                            onchange="format_numero(this)" class="form-control text-sm-end" minlength="5"
+                                            maxlength="11" onblur="format_numero(this)"
+                                            onKeyPress="return soloRuc(event)">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Nombre</label>
+                                        <input type="text" id="nombreC" class="form-control" disabled required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Teléfono</label>
+                                        <input type="text" id="telefonoC" class="form-control" disabled required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Condición</label>
+                                        <select class="form-select" name="condicion" id="condicion">
+                                            <option value="C">Contado</option>
+                                            <option value="E">Crédito</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>Fecha</label><br>
+                                    <input class="datepicker" name="fecha" id="fecha" data-date-format="mm/dd/yyyy"
+                                        disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card borde mt-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label>Cantidad</label>
+                                        <input type="text" name="txt_cant_producto" id="txt_cant_producto"
+                                            onKeyPress="return soloDecimal(event)"
+                                            onblur="soloNumber('txt_cant_producto')" value="0"
+                                            class="form-control text-sm-end">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label>Cod.</label>
+                                        <input type="text" name="txt_cod_producto" id="txt_cod_producto"
+                                            onKeyPress="return soloNumeros(event)"
+                                            onblur="soloNumber('txt_cod_producto')" class="form-control text-end">
+                                    </div>
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="form-group">
+                                        <label>Descripción</label>
+                                        <input type="text" name="txt_descripcion" id="txt_descripcion"
+                                            class="form-control text-center" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-0">
+                                    <div class="form-group">
+                                        <input type="hidden" name="txt_existencia" id="txt_existencia" value="0"
+                                            class="form-control text-sm-end" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label>Precio</label>
+                                        <input type="text" name="txt_precio" id="txt_precio"
+                                            onKeyPress="return soloNumeros(event)" onblur="soloNumber('txt_precio')"
+                                            value="0" class="form-control text-sm-end" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label>Precio Total</label>
+                                        <input type="text" name="txt_precio_total" id="txt_precio_total" value="0"
+                                            class="form-control text-sm-end" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <label>Acciones</label><br>
+                                        <!-- <a href="#" id="add_product_venta" class="btn btn-dark" style="display: none;">Agregar</a> -->
+                                        <button class="btn btn-dark fs-5" id="add_product_venta"><i class="bi bi-plus-square"></i> Añadir Item</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="table-responsive scroll-vertical mt-3">
+                        <table class="table table-hover text-center">
+                            <thead class="table-secondary">
+                                <tr>
+                                    <th width="100px">Orden</th>
+                                    <th width="100px" class="ocultar">Código</th>
+                                    <th>Descripción</th>
+                                    <th width="100px">Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Total</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="detalle_venta">
+                                <!-- Contenido ajax -->
+                            </tbody>
+                        </table>
+
+                        <div class="card borde mt-5 mb-3">
+                            <div class="card-body">
+                                <div class="row ml-auto">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-2 d-grid gap-2">
+                                                    <a href="#" class="btn btn-primary fs-4" id="btn_guardar_venta">
+                                                        <i class="bi bi-cloud-upload"></i> Guardar</a>
+                                                </div>
+                                                <div class="col-md-2 d-grid gap-2">
+                                                    <a href="#" class="btn btn-secondary fs-4" id="cancelar_venta">
+                                                        <i class="bi bi-x-lg"></i> Cancelar</a>
+                                                </div>
+                                                <div class="col-md-2 d-grid gap-2">
+                                                    <a href="#" class="btn btn-danger fs-4" id="cerrar_venta"> 
+                                                        <i class="bi bi-x-square"></i> Cerrar</a>
+                                                </div>
+                                                <div class="col-md-3 mr-auto fs-3 text-end">
+                                                    TOTAL A PAGAR <i class=" bi bi-coin"> </i>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" id="total_venta"
+                                                        class="form-control titulo-total fs-4" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card borde mb-2">
+                            <div class="card-body">
+                                <p class="font-weight-bold">F2: Buscar Clientes | F4: Buscar Artículo | F8: Guardar |
+                                    F9: Cancelar | F10: Acerca de...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <script src="./alertify/alertify.min.js"></script>
+  <script type="text/javascript" src="./js/jquery-3.5.1.js"> </script>
+  <script type="text/javascript" src="./js/jquery-3.6.0.min.js"> </script>
+  <script src="./js/popper.min.js"></script>
+  <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
+
+
+    <script src="./js/jquery.dataTables.min.js"></script>
+
+    <script src="./js/bootstrap-datepicker.min.js"></script>
+
+    <script src="./js/funciones.js"></script>
+    <script src="./js/nueva_venta.js"></script>
+
+    <script src="./js/navbar.js"></script>
+    <script>
+        $(document).ready(function () {
+          if (getCookie("login") != "iniciado") {
+              window.location.href = "./index.html";
+          } else {
+              if(getCookie("idrol") == 1){
+                  $('#navbarScroll').html(menuAdministrador);
+             }else if(getCookie("idrol") == 2){
+                  $('#navbarScroll').html(menuVenta);
+             }
+          }
+        });
+
+   </script>
+
+
+</body>
+
+</html>

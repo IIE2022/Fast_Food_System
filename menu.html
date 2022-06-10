@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+     <title>Fast Food System</title>
+     <link rel="icon" type="image/jpg" href="img/pz.jpg">
+     <!-- Color para la barra de direccion del navegador (para dispositivos moviles) -->
+     <meta name="theme-color" content="black">
+     <!-- Oculta la barra de direccion al crear un acceso directo -->
+     <meta name="apple-mobile-web-app-capable" content="yes">
+     <!-- Meta Tag responsive -->
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <!-- Bootstrap -->
+     <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+     <link rel="stylesheet" href="bootstrap/bootstrap-icons.css">
+     <!-- ALERTIFY -->
+     <link href="alertify/alertify.min.css" rel="stylesheet" type="text/css">
+     <link href="alertify/default.min.css" rel="stylesheet" type="text/css">
+     <!-- CSS -->
+     <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body class="logo">
+
+     <div class="modal fade" id="perfilLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     
+     </div>
+
+
+     <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+          <div class="container-fluid ">
+               <a class="navbar-brand" href="./menu.html">
+                    <img src="./img/logo.png" alt="" class="d-inline-block align-text-middle" style="width:60px;">
+               </a>
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarScroll">
+
+               </div>
+          </div>
+     </nav>
+
+
+     <script src="./alertify/alertify.min.js"></script>
+     <script type="text/javascript" src="./js/jquery-3.5.1.js"> </script>
+     <script type="text/javascript" src="./js/jquery-3.6.0.min.js"> </script>
+     <script type="text/javascript" src="./js/popper.min.js"> </script>
+     <script type="text/javascript" src="./js/datatables.min.js"></script>
+     <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
+
+     <script type="text/javascript" src="./js/jquery.dataTables.min.js"></script>
+
+     <script src="js/funciones.js"></script>
+     <script src="./js/navbar.js"></script>
+
+     <script>
+          $(document).ready(function () {
+               if (getCookie("login") != "iniciado") {
+                    window.location.href = "./index.html";
+               } else {
+                    if (getCookie("idrol") == 1) {
+                         $('#navbarScroll').html(menuAdministrador);
+                    } else if (getCookie("idrol") == 2) {
+                         $('#navbarScroll').html(menuVenta);
+                    }
+               }
+          });
+
+     </script>
+
+</body>
+
+</html>

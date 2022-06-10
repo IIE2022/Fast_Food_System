@@ -1,0 +1,42 @@
+.fondo{
+    background: url("../img/background.jpg");
+    height: 97vh;
+    background-size: cover;
+    background-position: center;
+}
+.centrardiv{
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+}
+.logo{
+    background: url("../img/logo.jpg");
+    height: 97vh;
+    background-size: cover;
+    background-position: center;
+}
+.letra{
+  background: rgba(5, 7, 12, 0.70);
+  color: white;
+}
+.blanco{
+    color: white;
+}
+
+
+.boton{
+    margin-top: 2px;
+    width: 100px !important;
+}
+
+.btn-edit{
+    width: 100px !important;
+    margin-top : 2px;
+}
+
+
+.btn-delete{
+    width: 100px !important;
+    margin-top : 2px;
+}

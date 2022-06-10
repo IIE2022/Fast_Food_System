@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+     <meta charset="utf-8" />
+     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+     <title>Clientes</title>
+     <link rel="icon" type="image/jpg" href="img/pz.jpg">
+     <!-- Color para la barra de direccion del navegador (para dispositivos moviles) -->
+     <meta name="theme-color" content="black">
+     <!-- Oculta la barra de direccion al crear un acceso directo -->
+     <meta name="apple-mobile-web-app-capable" content="yes">
+     <!-- Meta Tag responsive -->
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <!-- ALERTIFY -->
+     <link href="./alertify/alertify.min.css" rel="stylesheet" type="text/css" />
+     <link href="./alertify/default.min.css" rel="stylesheet" type="text/css" />
+     <!-- Bootstrap -->
+     <link rel="stylesheet" href="./bootstrap/bootstrap.min.css" />
+     <link rel="stylesheet" href="./bootstrap/bootstrap-icons.css" />
+     <link href="./css/datatables.min.css" rel="stylesheet" type="text/css" />
+     <!-- CSS -->
+     <link rel="stylesheet" href="./css/estilos.css" />
+</head>
+
+<body class="logo">
+
+    <div class="modal fade" id="perfilLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     
+    </div>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+         <div class="container-fluid ">
+              <a class="navbar-brand" href="./menu.html">
+                   <img src="./img/logo.png" alt="" class="d-inline-block align-text-middle" style="width:60px;">
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                   aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                   <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarScroll">
+
+              </div>
+         </div>
+    </nav>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="newModal" data-bs-backdrop="static"  tabindex="-1" data-bs-backdrop="static" aria-labelledby="newModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal-header">
+                        <h1 class="titulo text-center modal-title">Nuevo Cliente</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="form">
+
+
+                                <div class="row mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">CI</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" id="ci" onKeyPress="return soloNumeros(event)"
+                                            onkeyup="format_numero(this)" onchange="format_numero(this)"
+                                            class="form-control text-sm-end" placeholder="Nº Documento *" minlength="5"
+                                            maxlength="11" onblur="format_numero(this)" autofocus>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <input type="text" id="verificador" onKeyPress="return soloNumeros(event)"
+                                            class="form-control text-sm-end" title="Verificador" maxlength="1">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Nombre y Apellido</label>
+                                    <input class="form-control" name="nombre" id="nombre" type="text" onKeyPress="return soloLetras(event)"
+                                        placeholder="Ingrese el nombre del usuario*" minlength="2" maxlength="25"
+                                        required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Teléfono</label>
+                                    <input class="form-control text-sm-end" name="telefono" id="telefono" type="text" onKeyPress="return soloNumeros(event)"
+                                        placeholder="Ingrese el teléfono del usuario" maxlength="20">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="font-weight-bold" for="direccion">Dirección</label>
+                                    <textarea class="form-control" id="direccion" rows="3" maxlength="50"></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Correo</label>
+                                    <input class="form-control text-sm-end" name="correo" id="correo" type="email"
+                                        placeholder="Ingrese el correo del usuario" maxlength="50">
+                                </div>
+
+
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="d-grid gap-2">
+                                                <button type="button" class="btn btn-danger" id="btn-cancel"> Cancelar</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="d-grid gap-2">
+                                                <button type="button" class="btn btn-primary btn-block" id="btn-form"> Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                      <div class="position-relative text-end">
+                          <a class="navbar-brand" href="./menu.html">
+                              <button type="button" class="btn-close"
+                               data-bs-dismiss="modal" aria-label="Close"></button>
+                          </a>
+                      </div>
+                        <div class="row">
+                            <div class="col-md-3 m-3">
+                                <button type="button" class="btn btn-primary" id="nuevo"> Agregar Nuevo </button>
+                            </div>
+                            <div class="col-md-6 m-3 my-auto">
+                                <h2 class="titulo text-center">Consulta de Clientes </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive py-4">
+                            <table id="example" class="table table-striped table-bordered display pt-2">
+                                <thead class="table-secondary">
+                                    <tr class="tabla-cabecera">
+                                        <th style="width: 10%;">Código</th>
+                                        <th style="width: 10%;">CI</th>
+                                        <th style="width: 40%;">Nombre</th>
+                                        <th style="width: 30%;">Dirección</th>
+                                        <th style="width: 10%;">Opciones</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="tbody_registro"> </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- JavaScript -->
+<script src="./alertify/alertify.min.js"></script>
+<script type="text/javascript" src="./js/jquery-3.5.1.js"> </script>
+<script type="text/javascript" src="./js/jquery-3.6.0.min.js"> </script>
+<script type="text/javascript" src="./js/popper.min.js"> </script>
+<script type="text/javascript" src="./js/datatables.min.js"></script>
+<script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="./js/jquery.dataTables.min.js"></script>
+
+<script src="js/funciones.js"></script>
+<script src="js/clientes.js"></script>
+<script src="./js/navbar.js"></script>
+<script>
+    $(document).ready(function () {
+      if (getCookie("login") != "iniciado") {
+          window.location.href = "./index.html";
+      } else {
+          if(getCookie("idrol") == 1){
+              $('#navbarScroll').html(menuAdministrador);
+         }else if(getCookie("idrol") == 2){
+              $('#navbarScroll').html(menuVenta);
+         }
+      }
+    });
+
+</script>
+
+
+</body>
+
+</html>
